@@ -5,7 +5,9 @@ import AwesomeIcon from "react-native-vector-icons/FontAwesome5";
 import Home from "../screens/Home";
 import Favorites from "../screens/Favorites";
 import Cart from "../screens/Cart";
+import AccountStack from "./AccountStack";
 import Account from "../screens/Account";
+
 import { StyleSheet } from "react-native";
 import colors from "../styles/colors";
 
@@ -46,7 +48,7 @@ export default function AppNavigation() {
                 />
                 <Tab.Screen
                     name="account"
-                    component={Account}
+                    component={AccountStack}
                     options={{
                         title: "Tu cuenta",
                     }}                   
