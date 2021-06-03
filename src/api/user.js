@@ -33,8 +33,28 @@ export const loginApi = async (formData) => {
         const result = await response.json();
         return result;
     } catch (error) {
-        console.log(error);
+        
         return null;
     }
 };
+
+export const getMeApi = async (token) => {
+    try {
+        const url = `${ API_URL }/users/me`;
+        const params = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${ token }`  
+            } 
+        }
+
+        const response = await fetch(url, params)
+        const result  = await response.json();
+
+        return result;
+    } catch (error) {
+        return null
+    }
+}
 
