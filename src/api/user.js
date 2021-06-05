@@ -13,8 +13,7 @@ export const registerApi = async (formData) => {
         const response = await fetch(url, params);
         const result = await response.json();
         return result;
-    } catch (error) {
-        console.log(error);
+    } catch (error) {        
         return null;
     }
 };
@@ -58,3 +57,21 @@ export const getMeApi = async (token) => {
     }
 }
 
+export const updateUserApi = async (auth, formData) => {
+    try {
+        const url = `${ API_URL }/users/${ auth.idUser }`;
+        const params = {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${ auth.token }`
+            },
+            body: JSON.stringify( formData )
+        }    
+        const response = await fetch(url, params);
+        const result = await response.json();        
+        return result;
+    } catch (error) {
+        return null
+    }
+}

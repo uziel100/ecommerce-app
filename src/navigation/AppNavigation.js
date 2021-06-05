@@ -6,7 +6,6 @@ import Home from "../screens/Home";
 import Favorites from "../screens/Favorites";
 import Cart from "../screens/Cart";
 import AccountStack from "./AccountStack";
-import Account from "../screens/Account";
 
 import { StyleSheet } from "react-native";
 import colors from "../styles/colors";
@@ -86,7 +85,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.bgDark,
     },
     icon: {
-        fontSize: 20,
+        fontSize: 18,
         color: colors.fontLight,
     },
 });
