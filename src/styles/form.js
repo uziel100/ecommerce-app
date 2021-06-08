@@ -9,6 +9,10 @@ const formStyle = StyleSheet.create({
         padding: 5,
         backgroundColor: colors.primary,
     },
+    btnDanger: {        
+        backgroundColor: colors.danger,        
+    },
+
     btnText: {
         marginTop: 10,
     },
