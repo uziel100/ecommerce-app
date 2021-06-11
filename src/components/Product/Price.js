@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-export default function Price({ price, discount = 12 }) {
+export default function Price({ price, discount }) {
 
     const calcPrice = ( price, discount ) => {
         if( !discount ) return price;
@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: 5,
+        marginBottom: 10
     },
     dataText:{
         width: '45%',
