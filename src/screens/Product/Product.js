@@ -49,7 +49,7 @@ export default function Product({ route:{ params }  }) {
 
 const styles = StyleSheet.create({
     container:{        
-        paddingBottom: 50
+        paddingBottom: 50,        
     },
     containerView:{
         padding: 20,

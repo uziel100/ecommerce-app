@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Text, View } from "react-native";
 import jwtDecode from "jwt-decode";
 import AppNavigation from "./src/navigation/AppNavigation";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
 import StatusBar from "../../components/StatusBar";
 import Search from "../../components/Search/index";
 import colors from "../../styles/colors";
@@ -14,9 +14,9 @@ export default function Home() {
                 barStyle="light-content"
             />
             <Search />
-            <ScrollView>
+            <ScrollView >                
                 <Banner />
-                <NewProducts />
+                <NewProducts />                
             </ScrollView>
         </>
     );

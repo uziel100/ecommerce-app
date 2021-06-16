@@ -67,7 +67,7 @@ export default function Banner( ) {
 
 const styles = StyleSheet.create({
     container:{
-        position: 'relative'
+        position: 'relative',        
     },
     carousel: {
         width,
