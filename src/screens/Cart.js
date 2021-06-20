@@ -9,6 +9,7 @@ import { getAddressApi } from "../api/address";
 import useAuth from "../hooks/useAuth";
 import { size } from "lodash";
 import NotProducts from "../components/cart/NotProducts";
+import Search from "../components/Search/Search";
 import ProductList from "../components/cart/ProductList";
 import AddressList from "../components/cart/AddressList";
 import Payment from "../components/cart/Payment";
@@ -54,8 +55,11 @@ export default function Cart() {
     return (
         <>
             <StatusBar backgroundColor={colors.bgDark} />
-            {!cart && size(cart) === 0 ? (
-                <NotProducts />
+            {!cart || size(cart) === 0 ? (
+                <>
+                    <Search />
+                    <NotProducts />
+                </>
             ) : (
                 <KeyboardAwareScrollView extraScrollHeight={25}>
                     <ScrollView style={styles.cartContainer}>
@@ -72,7 +76,7 @@ export default function Cart() {
                             setSelectedAddress={ setSelectedAddress }
                         />
                         <Payment 
-                            setSelectedAddress={ setSelectedAddress }
+                            selectedAddress={ selectedAddress }
                             products={ products }
                             totalPayment={ totalPayment }
                         />

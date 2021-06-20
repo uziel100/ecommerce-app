@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { useFormik } from "formik";
@@ -9,10 +9,10 @@ import { size } from "lodash";
 import { useNavigation } from "@react-navigation/native";
 import { paymentCartApi, deleteCartApi } from "../../api/cart";
 import useAuth from "../../hooks/useAuth";
-// import { STRAPI_PUBLISHABLE_KEY } from "../../utils/constants";
 import { formStyle } from "../../styles";
 import colors from "../../styles/colors";
-// const stripe = require("stripe-client")(STRAPI_PUBLISHABLE_KEY);
+import { STRIPE_PUBLIC_KEY } from "../../utils/constants";
+const stripe = require('stripe-client')( STRIPE_PUBLIC_KEY )
 
 export default function Payment(props) {
   const { totalPayment, selectedAddress, products } = props;
@@ -20,39 +20,43 @@ export default function Payment(props) {
   const { auth } = useAuth();
   const navigation = useNavigation();
 
+  useEffect(()=>{
+    formik.setFieldValue('number', '4242424242424242' )
+    formik.setFieldValue('exp_month', '04' )
+    formik.setFieldValue('exp_year', '24' )
+    formik.setFieldValue('cvc', '123' )
+    formik.setFieldValue('name', 'Uziel meliton' )
+  }, [])
+
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
-    onSubmit: async (formData) => {
+    onSubmit: async (formData) => {        
+      setLoading(true);
+      const result = await stripe.createToken({ card: formData });      
+      if (result?.error) {   
+        Toast.show(result.error.message, {
+          position: Toast.positions.CENTER,
+        });
+        setLoading(false);
+      } else {        
+        const response = await paymentCartApi(
+          auth,
+          result.id,
+          products,
+          selectedAddress
+        );
 
-        console.log(formData)
-    //   const result = await stripe.createToken({ card: formData });
-    //   setLoading(true);
-
-    //   if (result?.error) {
-    //     Toast.show(result.error.message, {
-    //       position: Toast.positions.CENTER,
-    //     });
-    //     setLoading(false);
-    //   } else {
-    //     const response = await paymentCartApi(
-    //       auth,
-    //       result.id,
-    //       products,
-    //       selectedAddress
-    //     );
-
-    //     if (size(response) > 0) {
-    //       console.log("Pedido completado");
-    //       await deleteCartApi();
-    //       navigation.navigate("account", { screen: "orders" });
-    //     } else {
-    //       Toast.show("Error al realizar el pedid", {
-    //         position: Toast.positions.CENTER,
-    //       });
-    //       setLoading(false);
-    //     }
-    //   }
+        if (size(response) > 0) {          
+          await deleteCartApi();          
+          navigation.navigate("account", { screen: "orders" });
+        } else {
+          Toast.show("Error al realizar el pedido", {
+            position: Toast.positions.CENTER,
+          });
+          setLoading(false);
+        }
+      }
     },
   });
 
@@ -101,6 +105,7 @@ export default function Payment(props) {
 
       <Button
         mode="contained"
+        disabled={ loading }
         contentStyle={styles.btnContent}
         labelStyle={styles.btnText}
         onPress={formik.handleSubmit}
