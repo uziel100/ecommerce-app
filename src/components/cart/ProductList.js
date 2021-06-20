@@ -28,7 +28,7 @@ export default function ProductList({
                 totalPaymentTemp +=  calcPrice(response.price, response.discount) * response.quantity;
             }
             setProducts(tempProducts);
-            setTotalPayment( totalPaymentTemp )
+            setTotalPayment( totalPaymentTemp.toFixed(2) )
         })();
     }, [cart]);
 

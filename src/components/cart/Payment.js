@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { useFormik } from "formik";
@@ -19,14 +19,6 @@ export default function Payment(props) {
   const [loading, setLoading] = useState(false);
   const { auth } = useAuth();
   const navigation = useNavigation();
-
-  useEffect(()=>{
-    formik.setFieldValue('number', '4242424242424242' )
-    formik.setFieldValue('exp_month', '04' )
-    formik.setFieldValue('exp_year', '24' )
-    formik.setFieldValue('cvc', '123' )
-    formik.setFieldValue('name', 'Uziel meliton' )
-  }, [])
 
   const formik = useFormik({
     initialValues: initialValues(),

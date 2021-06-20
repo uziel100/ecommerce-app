@@ -2,8 +2,8 @@ import React, { useState, useCallback } from "react";
 import { StyleSheet, ScrollView, Text, ActivityIndicator } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { size } from "lodash";
-// import ListOrder from "../../components/Order/ListOrder";
-// import { getOrdersApi } from "../../api/order";
+import ListOrder from "../../components/Order/ListOrder";
+import { getOrdersApi } from "../../api/order";
 import StatusBar from "../../components/StatusBar";
 import useAuth from "../../hooks/useAuth";
 import colors from "../../styles/colors";
@@ -12,14 +12,14 @@ export default function Orders() {
   const [orders, setOrders] = useState(null);
   const { auth } = useAuth();
 
-//   useFocusEffect(
-//     useCallback(() => {
-//       (async () => {
-//         const response = await getOrdersApi(auth);
-//         setOrders(response);
-//       })();
-//     }, [])
-//   );
+  useFocusEffect(
+    useCallback(() => {
+      (async () => {
+        const response = await getOrdersApi(auth);
+        setOrders(response);
+      })();
+    }, [])
+  );
 
   return (
     <>
@@ -27,13 +27,13 @@ export default function Orders() {
       <ScrollView style={styles.container}>
         <Text style={styles.title}>Mis pedidos</Text>
 
-        {/* {!orders ? (
+        {!orders ? (
           <ActivityIndicator size="large" style={styles.loading} />
         ) : size(orders) === 0 ? (
           <Text style={styles.noOrdersText}>No tienes pedidos</Text>
         ) : (
           <ListOrder orders={orders} />
-        )} */}
+        )}
       </ScrollView>
     </>
   );
