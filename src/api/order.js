@@ -17,3 +17,21 @@ export async function getOrdersApi(auth) {
     return null;
   }
 }
+
+export async function getOrdersByIdPaymentApi(auth, idpayment) {
+  try {
+    const url = `${API_URL}/orders?idPayment=${ idpayment }`;
+    const params = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.token}`,
+      },
+    };
+    const response = await fetch(url, params);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}

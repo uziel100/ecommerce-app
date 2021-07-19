@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import StatusBar from "../components/StatusBar";
+import StatusBarCustom  from "../components/StatusBar";
 import Search from "../components/Search/Search";
 import colors from "../styles/colors";
 import { useFocusEffect } from "@react-navigation/native";
@@ -28,7 +28,10 @@ export default function Favorites() {
 
     return (
         <>
-            <StatusBar backgroundColor={colors.bgDark} />
+            <StatusBarCustom 
+            backgroundColor={colors.bgSearch}
+            barStyle="light-content"
+             />
             <Search />
             {!products ? (
                 <ScreenLoading text="Cargando lista" size="large" />

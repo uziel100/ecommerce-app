@@ -26,9 +26,9 @@ export default function ProductList({
                 response.quantity = product.quantity;
                 tempProducts.push(response);                
                 totalPaymentTemp +=  calcPrice(response.price, response.discount) * response.quantity;
-            }
+            }            
             setProducts(tempProducts);
-            setTotalPayment( totalPaymentTemp.toFixed(2) )
+            setTotalPayment( totalPaymentTemp )
         })();
     }, [cart]);
 
@@ -41,7 +41,7 @@ export default function ProductList({
 
     return (
         <View>
-            <Text style={styles.title}>Listado:</Text>
+            <Text style={styles.title}>Listado</Text>
             {!products ? (
                 <ScreenLoading title="Cargando carrito" size="large" />
             ) : (

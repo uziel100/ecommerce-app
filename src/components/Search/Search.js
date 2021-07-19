@@ -84,7 +84,7 @@ export default function Search({ currentSearch = "" }) {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: colors.bgDark,
+        backgroundColor: colors.bgSearch,
         paddingVertical: 10,
         paddingHorizontal: 20,
         zIndex: 2,

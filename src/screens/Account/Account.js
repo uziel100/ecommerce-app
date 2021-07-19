@@ -26,7 +26,7 @@ export default function Account() {
     return (
         <>
             <StatusBarCustom
-                backgroundColor={colors.bgDark}
+                backgroundColor={colors.bgSearch}
                 barStyle="light-content"
             />
             {

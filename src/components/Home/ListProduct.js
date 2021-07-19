@@ -39,7 +39,7 @@ export default function ListProduct({ products }) {
                             >
                                 {product.title}
                             </Text>
-                        </View>
+                        </View> 
                     </View>
                 </TouchableWithoutFeedback>
             ))}
@@ -58,11 +58,12 @@ const styles = StyleSheet.create({
     containerProduct: {
         width: "50%",
         padding: 3,
+        height: 240
     },
     product: {
         padding: 10,
         backgroundColor: "#f0f0f0",
-        borderRadius: 5,
+        borderRadius: 5,        
     },
     image: {
         height: 150,

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import AwesomeIcon from "react-native-vector-icons/FontAwesome5"; 
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"; 
 import Favorites from "../screens/Favorites";
 import Cart from "../screens/Cart";
 import AccountStack from "./AccountStack";
@@ -18,8 +18,8 @@ export default function AppNavigation() {
             <Tab.Navigator
                 barStyle={styles.navigation}
                 screenOptions={({ route }) => ({
-                    tabBarIcon: (routerStatus) => {
-                        return setIcon(route, routerStatus);
+                    tabBarIcon: ({ focused }) => {
+                        return setIcon(route, focused);
                     },
                 })}               
             >
@@ -57,27 +57,27 @@ export default function AppNavigation() {
     );
 }
 
-const setIcon = (route, routerStatus) => {
+const setIcon = (route, focused) => {
     let iconName = "";
 
     switch (route.name) {
         case "home":
-            iconName = "home";
+            iconName = focused? "home" : "home-outline";
             break;
         case "favorites":
-            iconName = "heart";
+            iconName = focused? "heart": "heart-outline";
             break;
         case "cart":
-            iconName = "shopping-cart";
+            iconName = focused? "cart": "cart-outline";
             break;
         case "account":
-            iconName = "user";
+            iconName = focused? "account": "account-outline";
             break;
         default:
             break;
     }
 
-    return <AwesomeIcon name={iconName} solid style={styles.icon} />;
+    return <MaterialCommunityIcons name={iconName} style={styles.icon} />;
 };
 
 const styles = StyleSheet.create({

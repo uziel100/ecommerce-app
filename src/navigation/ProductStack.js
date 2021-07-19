@@ -4,6 +4,7 @@ import Home from '../screens/Product/Home'
 import colors from '../styles/colors'
 import Product from '../screens/Product/Product';
 import Search from '../screens/Product/Search';
+import Category from '../screens/Product/Category';
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,12 @@ export default function ProductStack() {
                 component={ Search }
                 options={{ headerShown: false } }
             />
+            <Stack.Screen 
+                name="category"
+                component={ Category }
+                options={{ title: '' } }
+            />
+            
             
         </Stack.Navigator>
     )

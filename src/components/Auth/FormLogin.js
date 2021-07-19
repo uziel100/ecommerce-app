@@ -13,6 +13,7 @@ import useAuth from "../../hooks/useAuth";
 export default function FormRegister({ changeForm }) {
    
     const [loading, setLoading] = useState(false)
+    const [showPassword, setShowPassword] = useState( true )
     const { login } = useAuth();
     
 
@@ -46,7 +47,13 @@ export default function FormRegister({ changeForm }) {
             <TextInput
                 label="Contraseña"
                 style={formStyle.input}
-                secureTextEntry
+                right={
+                    <TextInput.Icon
+                        name={showPassword ? "eye-off" : "eye"}
+                        onPress={() => setShowPassword(!showPassword)}
+                    />
+                }
+                secureTextEntry={showPassword}
                 onChangeText={ text => formik.setFieldValue('password', text) }
                 value={ formik.values.password }
                 error={ formik.errors.password }

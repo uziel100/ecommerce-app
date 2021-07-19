@@ -4,7 +4,10 @@ import { View, Text, StyleSheet } from 'react-native'
 export default function Price({ price, discount }) {
 
     const calcPrice = ( price, discount ) => {
-        if( !discount ) return price;
+        
+        if( !discount ){
+            return price;
+        } 
 
         const discountAmount = ( price * discount ) / 100;
         return ( price - discountAmount ).toFixed(2)
@@ -13,7 +16,7 @@ export default function Price({ price, discount }) {
     return (
         <View>
             {
-                discount &&
+                discount > 0 &&
                 <View style={ styles.containerData } >
                     <Text style={ styles.dataText } >Precio recomendado</Text>
                     <Text style={ [styles.dataValue, styles.oldPrice] }>$ { price } MX</Text>
@@ -27,7 +30,7 @@ export default function Price({ price, discount }) {
             </View>
 
             {
-                discount &&
+                discount > 0 &&
                 <View style={ styles.containerData } >
                     <Text style={ styles.dataText } >Ahorras</Text>
                     <Text style={ [styles.dataValue, styles.saving] }>$ { (( price * discount ) / 100).toFixed(2) } ({ discount }%)</Text>

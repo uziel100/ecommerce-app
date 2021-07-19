@@ -24,3 +24,28 @@ export const getProductApi = async ( idProduct ) => {
         return null
     }
 }
+
+export const updateProductStockApi = async ( auth, products ) => {
+    try {
+        for (const product of products) {
+            const data = await getProductApi(product._id);            
+            const url = `${ API_URL }/products/${ product._id }`
+            const params = {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${ auth.token }`  
+                },
+                body: JSON.stringify({
+                    stock: data.stock - product.quantity
+                })      
+            }
+            await fetch(url, params);                        
+        }
+        return true;
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+

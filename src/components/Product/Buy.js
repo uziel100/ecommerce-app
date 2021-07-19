@@ -33,7 +33,7 @@ export default function Buy({ product, quantity }) {
 
 const styles = StyleSheet.create({
     btnBuyContent: {    
-        backgroundColor: '#008fe9',
+        backgroundColor: '#2b9aef',
         paddingVertical: 5
     },
     btnLabel:{

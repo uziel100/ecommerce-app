@@ -20,7 +20,7 @@ export default function Order(props) {
           {order.product.title}
         </Text>
         <Text>Cantidad: {order.quantity}</Text>
-        <Text>Total pagado: {order.productsPayment} €</Text>
+        <Text>Total pagado: $ { Math.ceil(order.productsPayment) }</Text>
       </View>
     </View>
   );
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     marginHorizontal: -20,
     paddingVertical: 5,
-    flexDirection: "row",
+    flexDirection: "row"    
   },
   containerImage: {
     width: "30%",
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   info: {
-    width: "70%",
+    width: "60%",
     justifyContent: "center",
   },
   name: {

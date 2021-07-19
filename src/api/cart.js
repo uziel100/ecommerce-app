@@ -1,8 +1,9 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { map, filter, size } from "lodash";
 import { API_URL, CART } from "../utils/constants";
+import { addOrderStatusApi } from "./orderstatus";
 
-export const getProductCartApi = async () => {    
+export const getProductCartApi = async () => {  
     try {
         const cart = await AsyncStorage.getItem(CART);
         if (!cart) return [];
@@ -131,6 +132,13 @@ export async function decreaseProductCartApi(idProduct) {
 
       const response = await fetch(url, params);
       const result = await response.json();
+      const data = {
+        user: auth.idUser,
+        idpayment: result[0]?.idPayment,
+        address: addressShipping,        
+      }
+
+      await addOrderStatusApi(auth, data);
       return result;
     } catch (error) {
       console.log(error)

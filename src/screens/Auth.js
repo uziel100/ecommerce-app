@@ -15,7 +15,7 @@ export const Auth = () => {
     const [showLogin, setShowLogin] = useState(true);
     const changeForm = () => setShowLogin( !showLogin )
     return (
-        <View style={layoutStyle.container}>
+        <View style={[layoutStyle.container, styles.container]}>
             <KeyboardAvoidingView
                 style={layoutStyle.container}
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -36,5 +36,6 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        backgroundColor: '#f1f2f7'
     },
 });

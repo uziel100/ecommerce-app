@@ -30,7 +30,6 @@ export default function Product(props) {
     };
     const increaseProductCart = async () => {
         const response = await increaseProductCartApi(product._id);
-        console.log(response);
         if (response) setReloadCart(true);
     };
 
@@ -58,7 +57,7 @@ export default function Product(props) {
                             $ {calcPrice(product.price, product.discount)}
                         </Text>
                     </View>
-                    {product.discount && (
+                    {product.discount > 0 && (
                         <View style={styles.containerDiscount}>
                             <Text style={styles.discountText}>Ahorras: </Text>
                             <Text style={ styles.discountValue }>

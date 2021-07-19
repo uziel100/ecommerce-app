@@ -23,7 +23,10 @@ export default function Search({ route: { params } }) {
 
     return (
         <>
-            <StatusBar backgroundColor={ colors.bgDark } />
+            <StatusBarCustom 
+            backgroundColor={colors.bgSearch}
+            barStyle="light-content"
+             />
             <SearchBar currentSearch={ query } />
             {
                 !products

@@ -4,6 +4,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { Button } from 'react-native-paper'
 import { addFavoriteApi, deleteFavoriteApi, isFavoriteApi } from '../../api/favorite';
 import useAuth from "../../hooks/useAuth";
+import colors from '../../styles/colors'
 
 export default function Favorite({ product }) {
 
@@ -75,11 +76,11 @@ const styles = StyleSheet.create({
         fontSize: 15
     },
     btnAddFavoriteContent:{
-        backgroundColor: '#00635D',
+        backgroundColor: colors.secondary,
         padding: 5
     },
     btnDeleteFavoriteContent:{
-        backgroundColor: '#c92c17',
+        backgroundColor: colors.danger,
         padding: 5
     },    
     btn:{

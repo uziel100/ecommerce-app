@@ -10,6 +10,7 @@ import { registerApi } from "../../api/user";
 export default function FormRegister({ changeForm }) {
 
     const [loading, setLoading] = useState(false)
+    const [showPassword, setShowPassword] = useState( true )
 
     const formik = useFormik( {
         initialValues: initialValues(),
@@ -50,6 +51,13 @@ export default function FormRegister({ changeForm }) {
                 style={formStyle.input}
                 secureTextEntry
                 onChangeText={ ( text ) => formik.setFieldValue('password', text) }
+                right={
+                    <TextInput.Icon
+                        name={showPassword ? "eye-off" : "eye"}
+                        onPress={() => setShowPassword(!showPassword)}
+                    />
+                }
+                secureTextEntry={showPassword}
                 value={ formik.values.password }
                 error={ formik.errors.password }
             />
@@ -57,7 +65,8 @@ export default function FormRegister({ changeForm }) {
                 label="Repetir contraseña"
                 style={formStyle.input}
                 secureTextEntry
-                onChangeText={ ( text ) => formik.setFieldValue('matchPassword', text) }
+                onChangeText={ ( text ) => formik.setFieldValue('matchPassword', text) }                
+                secureTextEntry={showPassword}
                 value={ formik.values.matchPassword }
                 error={ formik.errors.matchPassword }
             />

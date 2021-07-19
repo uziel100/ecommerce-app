@@ -64,6 +64,12 @@ export default function Menu() {
             <List.Section>
                 <List.Subheader>App</List.Subheader>
                 <List.Item
+                    title="Seguimiento de pedidos"
+                    description="Localiza el estado de tu pedido"
+                    left={(props) => <List.Icon {...props} icon="clipboard-list" />}
+                    onPress={() => navigation.navigate('tack-orders')}
+                />
+                <List.Item
                     title="Pedidos"
                     description="Lista de todos mis pedidos"
                     left={(props) => <List.Icon {...props} icon="clipboard-list" />}
